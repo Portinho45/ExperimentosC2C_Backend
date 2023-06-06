@@ -11,7 +11,7 @@ import pe.edu.upc.connection2connection.services.IInstitucionService;
 import java.util.List;
 import java.util.stream.Collectors;
 @RestController
-@RequestMapping("/instituciones")
+@RequestMapping("/Institucion_Educativa")
 public class InstitucionController {
 
     @Autowired

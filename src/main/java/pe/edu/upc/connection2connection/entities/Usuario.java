@@ -3,7 +3,7 @@ package pe.edu.upc.connection2connection.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name="usuarios")
+@Table(name="Usuario")
 public class Usuario {
     
     @Id

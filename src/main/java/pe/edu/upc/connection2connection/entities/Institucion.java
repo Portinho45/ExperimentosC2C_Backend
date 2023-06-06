@@ -3,7 +3,7 @@ package pe.edu.upc.connection2connection.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "instituciones")
+@Table(name = "Institucion_Educativa")
 public class Institucion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

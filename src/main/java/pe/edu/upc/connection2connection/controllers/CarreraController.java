@@ -9,7 +9,7 @@ import pe.edu.upc.connection2connection.services.ICarreraService;
 import java.util.List;
 import java.util.stream.Collectors;
 @RestController
-@RequestMapping("/carreras")
+@RequestMapping("/Carreras")
 public class CarreraController {
     @Autowired
     private ICarreraService aS;

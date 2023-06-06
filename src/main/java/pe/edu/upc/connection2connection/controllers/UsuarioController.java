@@ -10,7 +10,7 @@ import pe.edu.upc.connection2connection.services.IUsuarioService;
 import java.util.List;
 import java.util.stream.Collectors;
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/Usuario")
 public class UsuarioController {
     @Autowired
     private IUsuarioService uS;
