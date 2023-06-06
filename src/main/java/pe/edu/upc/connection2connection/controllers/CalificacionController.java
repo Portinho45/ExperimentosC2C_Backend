@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/calificaciones")
+@RequestMapping("/Calificacion")
 public class CalificacionController {
     @Autowired
     private ICalificacionService aS;
