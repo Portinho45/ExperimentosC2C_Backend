@@ -1,18 +1,32 @@
-package pe.edu.upc.connection2connection.dtos;
+package pe.edu.upc.connection2connection.entities;
 
-import pe.edu.upc.connection2connection.entities.Reclutador;
-import pe.edu.upc.connection2connection.entities.Requisito;
+import javax.persistence.*;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+@Entity
+@Table(name = "Puesto_Trabajos")
+public class Puesto_Trabajo {
 
-public class Puesto_TrabajoDTO {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @ManyToOne
+    @JoinColumn(name = "Requisito_id")
     private Requisito requisito;
 
+    @ManyToOne
+    @JoinColumn(name = "Reclutador_id")
     private Reclutador reclutador;
+
+    public Puesto_Trabajo(){
+
+    }
+
+    public Puesto_Trabajo(int id, Requisito requisito, Reclutador reclutador) {
+        this.id = id;
+        this.requisito = requisito;
+        this.reclutador = reclutador;
+    }
 
     public int getId() {
         return id;
