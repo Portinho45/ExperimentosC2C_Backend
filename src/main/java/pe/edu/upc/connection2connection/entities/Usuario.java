@@ -3,38 +3,38 @@ package pe.edu.upc.connection2connection.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Usuario")
+@Table(name="Usuarios")
 public class Usuario {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUsuario;
-    @Column(name="DNI_Usuario",length = 6,nullable = false)
-    private int DNI_Usuario;
-    @Column(name="Usuario_Usuario",length = 60,nullable = false)
-    private String Usuario_Usuario;
-    @Column(name="Nombre_Usuario",length = 60,nullable = false)
-    private String Nombre_Usuario;
-    @Column(name="Correo_Usuario",length = 60,nullable = false)
-    private String Correo_Usuario;
-    @Column(name="Contrasena_Usuario",length = 60,nullable = false)
-    private String Contrasena_Usuario;
-    @Column(name="Tipo_Usuario",length = 60,nullable = false)
-    private String Tipo_Usuario;
+    @Column(name="dni_Usuario",length = 6,nullable = false)
+    private int dni_Usuario;
+    @Column(name="usuario_Usuario",length = 60,nullable = false)
+    private String usuario_Usuario;
+    @Column(name="nombre_Usuario",length = 60,nullable = false)
+    private String nombre_Usuario;
+    @Column(name="correo_Usuario",length = 60,nullable = false)
+    private String correo_Usuario;
+    @Column(name="contrasena_Usuario",length = 60,nullable = false)
+    private String contrasena_Usuario;
+    @Column(name="tipo_Usuario",length = 60,nullable = false)
+    private String tipo_Usuario;
     @Column(name="key")
     private String key;
 
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, int DNI_Usuario, String usuario_Usuario, String nombre_Usuario, String correo_Usuario, String contrasena_Usuario, String tipo_Usuario, String key) {
+    public Usuario(int idUsuario, int dni_Usuario, String usuario_Usuario, String nombre_Usuario, String correo_Usuario, String contrasena_Usuario, String tipo_Usuario, String key) {
         this.idUsuario = idUsuario;
-        this.DNI_Usuario = DNI_Usuario;
-        this.Usuario_Usuario = usuario_Usuario;
-        this.Nombre_Usuario = nombre_Usuario;
-        this.Correo_Usuario = correo_Usuario;
-        this.Contrasena_Usuario = contrasena_Usuario;
-        this.Tipo_Usuario = tipo_Usuario;
+        this.dni_Usuario = dni_Usuario;
+        this.usuario_Usuario = usuario_Usuario;
+        this.nombre_Usuario = nombre_Usuario;
+        this.correo_Usuario = correo_Usuario;
+        this.contrasena_Usuario = contrasena_Usuario;
+        this.tipo_Usuario = tipo_Usuario;
         this.key = key;
     }
 
@@ -46,52 +46,52 @@ public class Usuario {
         this.idUsuario = idUsuario;
     }
 
-    public int getDNI_Usuario() {
-        return DNI_Usuario;
+    public int getDni_Usuario() {
+        return dni_Usuario;
     }
 
-    public void setDNI_Usuario(int DNI_Usuario) {
-        this.DNI_Usuario = DNI_Usuario;
+    public void setDni_Usuario(int dni_Usuario) {
+        this.dni_Usuario = dni_Usuario;
     }
 
     public String getUsuario_Usuario() {
-        return Usuario_Usuario;
+        return usuario_Usuario;
     }
 
     public void setUsuario_Usuario(String usuario_Usuario) {
-        Usuario_Usuario = usuario_Usuario;
+        this.usuario_Usuario = usuario_Usuario;
     }
 
     public String getNombre_Usuario() {
-        return Nombre_Usuario;
+        return nombre_Usuario;
     }
 
     public void setNombre_Usuario(String nombre_Usuario) {
-        Nombre_Usuario = nombre_Usuario;
+        this.nombre_Usuario = nombre_Usuario;
     }
 
     public String getCorreo_Usuario() {
-        return Correo_Usuario;
+        return correo_Usuario;
     }
 
     public void setCorreo_Usuario(String correo_Usuario) {
-        Correo_Usuario = correo_Usuario;
+        this.correo_Usuario = correo_Usuario;
     }
 
     public String getContrasena_Usuario() {
-        return Contrasena_Usuario;
+        return contrasena_Usuario;
     }
 
     public void setContrasena_Usuario(String contrasena_Usuario) {
-        Contrasena_Usuario = contrasena_Usuario;
+        this.contrasena_Usuario = contrasena_Usuario;
     }
 
     public String getTipo_Usuario() {
-        return Tipo_Usuario;
+        return tipo_Usuario;
     }
 
     public void setTipo_Usuario(String tipo_Usuario) {
-        Tipo_Usuario = tipo_Usuario;
+        this.tipo_Usuario = tipo_Usuario;
     }
 
     public String getKey() {
