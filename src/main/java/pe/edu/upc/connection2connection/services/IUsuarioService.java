@@ -10,5 +10,5 @@ public interface IUsuarioService {
 
     public void delete(int id);
 
-    public Usuario ListId(int id);
+    public Usuario listId(int id);
 }

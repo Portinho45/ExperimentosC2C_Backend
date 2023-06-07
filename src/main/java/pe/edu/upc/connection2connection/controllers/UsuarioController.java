@@ -10,7 +10,7 @@ import pe.edu.upc.connection2connection.services.IUsuarioService;
 import java.util.List;
 import java.util.stream.Collectors;
 @RestController
-@RequestMapping("/Usuario")
+@RequestMapping("/usuarios")
 public class UsuarioController {
     @Autowired
     private IUsuarioService uS;
@@ -36,7 +36,7 @@ public class UsuarioController {
     @GetMapping("/{id}")
     public UsuarioDTO ListId(@PathVariable("id")Integer id){
         ModelMapper m = new ModelMapper();
-        UsuarioDTO dto = m.map(uS.ListId(id), UsuarioDTO.class);
+        UsuarioDTO dto = m.map(uS.listId(id), UsuarioDTO.class);
         return dto;
     }
     @PutMapping
