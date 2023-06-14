@@ -8,36 +8,36 @@ public class Estudiante {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idEstudiante;
-    @Column(name="Semestre_Estudiante",length = 6,nullable = false)
-    private int Semestre_Estudiante;
-    @Column(name="Edad_Estudiante",length = 60,nullable = false)
-    private int Edad_Estudiante;
-    @Column(name="Genero_Estudiante",length = 60,nullable = false)
-    private String Genero_Estudiante;
-    @Column(name="Practicante_Estudiante",length = 60,nullable = false)
-    private boolean Practicante_Estudiante;
-    @Column(name="Descripcion_Estudiante",length = 60,nullable = false)
-    private String Descripcion_Estudiante;
+    @Column(name="semestre_Estudiante",length = 6,nullable = false)
+    private int semestre_Estudiante;
+    @Column(name="edad_Estudiante",length = 60,nullable = false)
+    private int edad_Estudiante;
+    @Column(name="genero_Estudiante",length = 60,nullable = false)
+    private String genero_Estudiante;
+    @Column(name="practicante_Estudiante",length = 60,nullable = false)
+    private boolean practicante_Estudiante;
+    @Column(name="descripcion_Estudiante",length = 60,nullable = false)
+    private String descripcion_Estudiante;
     @ManyToOne
-    @JoinColumn(name = "Institucion_Educativa_id")
-    private Institucion Institucion_Estudiante;
+    @JoinColumn(name = "Institucion_educativa_id")
+    private Institucion institucion_Estudiante;
 
     @ManyToOne
     @JoinColumn(name = "Usuario_id")
-    private Usuario Usuario_Estudiante;
+    private Usuario usuario_Estudiante;
 
     public Estudiante() {
     }
 
     public Estudiante(int idEstudiante, int semestre_Estudiante, int edad_Estudiante, String genero_Estudiante, boolean practicante_Estudiante, String descripcion_Estudiante, Institucion institucion_Estudiante, Usuario usuario_Estudiante) {
         this.idEstudiante = idEstudiante;
-        Semestre_Estudiante = semestre_Estudiante;
-        Edad_Estudiante = edad_Estudiante;
-        Genero_Estudiante = genero_Estudiante;
-        Practicante_Estudiante = practicante_Estudiante;
-        Descripcion_Estudiante = descripcion_Estudiante;
-        Institucion_Estudiante = institucion_Estudiante;
-        Usuario_Estudiante = usuario_Estudiante;
+        this.semestre_Estudiante = semestre_Estudiante;
+        this.edad_Estudiante = edad_Estudiante;
+        this.genero_Estudiante = genero_Estudiante;
+        this.practicante_Estudiante = practicante_Estudiante;
+        this.descripcion_Estudiante = descripcion_Estudiante;
+        this.institucion_Estudiante = institucion_Estudiante;
+        this.usuario_Estudiante = usuario_Estudiante;
     }
 
     public int getIdEstudiante() {
@@ -49,58 +49,58 @@ public class Estudiante {
     }
 
     public int getSemestre_Estudiante() {
-        return Semestre_Estudiante;
+        return semestre_Estudiante;
     }
 
     public void setSemestre_Estudiante(int semestre_Estudiante) {
-        Semestre_Estudiante = semestre_Estudiante;
+        this.semestre_Estudiante = semestre_Estudiante;
     }
 
     public int getEdad_Estudiante() {
-        return Edad_Estudiante;
+        return edad_Estudiante;
     }
 
     public void setEdad_Estudiante(int edad_Estudiante) {
-        Edad_Estudiante = edad_Estudiante;
+        this.edad_Estudiante = edad_Estudiante;
     }
 
     public String getGenero_Estudiante() {
-        return Genero_Estudiante;
+        return genero_Estudiante;
     }
 
     public void setGenero_Estudiante(String genero_Estudiante) {
-        Genero_Estudiante = genero_Estudiante;
+        this.genero_Estudiante = genero_Estudiante;
     }
 
     public boolean isPracticante_Estudiante() {
-        return Practicante_Estudiante;
+        return practicante_Estudiante;
     }
 
     public void setPracticante_Estudiante(boolean practicante_Estudiante) {
-        Practicante_Estudiante = practicante_Estudiante;
+        this.practicante_Estudiante = practicante_Estudiante;
     }
 
     public String getDescripcion_Estudiante() {
-        return Descripcion_Estudiante;
+        return descripcion_Estudiante;
     }
 
     public void setDescripcion_Estudiante(String descripcion_Estudiante) {
-        Descripcion_Estudiante = descripcion_Estudiante;
+        this.descripcion_Estudiante = descripcion_Estudiante;
     }
 
     public Institucion getInstitucion_Estudiante() {
-        return Institucion_Estudiante;
+        return institucion_Estudiante;
     }
 
     public void setInstitucion_Estudiante(Institucion institucion_Estudiante) {
-        Institucion_Estudiante = institucion_Estudiante;
+        this.institucion_Estudiante = institucion_Estudiante;
     }
 
     public Usuario getUsuario_Estudiante() {
-        return Usuario_Estudiante;
+        return usuario_Estudiante;
     }
 
     public void setUsuario_Estudiante(Usuario usuario_Estudiante) {
-        Usuario_Estudiante = usuario_Estudiante;
+        this.usuario_Estudiante = usuario_Estudiante;
     }
 }

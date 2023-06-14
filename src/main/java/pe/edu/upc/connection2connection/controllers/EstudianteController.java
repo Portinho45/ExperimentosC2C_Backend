@@ -25,7 +25,6 @@ public class EstudianteController {
         eS.insertar(e);
     }
 
-
     @GetMapping
     public List<EstudianteDTO> listar() {
         return eS.listar().stream().map(x->{
