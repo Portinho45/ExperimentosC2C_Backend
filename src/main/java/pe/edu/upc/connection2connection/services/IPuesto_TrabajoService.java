@@ -10,4 +10,6 @@ public interface IPuesto_TrabajoService {
 
     List<Puesto_Trabajo> listar();
 
+    public void delete(int id);
+
 }

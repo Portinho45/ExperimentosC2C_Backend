@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiOperation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.connection2connection.dtos.EmpresaDTO;
 import pe.edu.upc.connection2connection.dtos.ReclutadorDTO;
 import pe.edu.upc.connection2connection.entities.Empresa;
 import pe.edu.upc.connection2connection.entities.Reclutador;
@@ -23,7 +24,7 @@ public class ReclutadorController {
     public void registrar(@RequestBody ReclutadorDTO dto) {
         ModelMapper m = new ModelMapper();
         Reclutador r = m.map(dto, Reclutador.class);
-        rS.insertar(r);
+        rS.insert(r);
     }
 
 
@@ -36,6 +37,17 @@ public class ReclutadorController {
         }).collect(Collectors.toList());
     }
 
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id")Integer id){
+        rS.delete(id);
+    }
+
+    @PutMapping
+    public void goUpdate(@RequestBody ReclutadorDTO dto){
+        ModelMapper m = new ModelMapper();
+        Reclutador r = m.map(dto, Reclutador.class);
+        rS.insert(r);
+    }
 
     @PostMapping("/buscarEmpresa")
     @ApiOperation(value = "Buscar reclutadores por empresa")

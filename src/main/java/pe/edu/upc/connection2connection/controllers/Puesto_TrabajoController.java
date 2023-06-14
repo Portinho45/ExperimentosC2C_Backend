@@ -3,7 +3,9 @@ package pe.edu.upc.connection2connection.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.connection2connection.dtos.EmpresaDTO;
 import pe.edu.upc.connection2connection.dtos.Puesto_TrabajoDTO;
+import pe.edu.upc.connection2connection.entities.Empresa;
 import pe.edu.upc.connection2connection.entities.Puesto_Trabajo;
 import pe.edu.upc.connection2connection.services.IPuesto_TrabajoService;
 
@@ -32,6 +34,19 @@ public class Puesto_TrabajoController {
             return m.map(x,Puesto_TrabajoDTO.class);
 
         }).collect(Collectors.toList());
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id")Integer id){
+        pS.delete(id);
+    }
+
+
+    @PutMapping
+    public void goUpdate(@RequestBody Puesto_TrabajoDTO dto){
+        ModelMapper m = new ModelMapper();
+        Puesto_Trabajo pT = m.map(dto, Puesto_Trabajo.class);
+        pS.insertar(pT);
     }
 
 }

@@ -7,9 +7,11 @@ import java.util.List;
 
 public interface IReclutadorService {
 
-    public void insertar(Reclutador reclutador);
+    public void insert(Reclutador reclutador);
 
     List<Reclutador> listar();
+
+    public void delete(int id);
 
     List<Reclutador> buscarEmpresa(Empresa Empresa_id);
 

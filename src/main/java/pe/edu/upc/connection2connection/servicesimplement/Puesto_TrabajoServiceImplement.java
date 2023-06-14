@@ -21,4 +21,9 @@ public class Puesto_TrabajoServiceImplement implements IPuesto_TrabajoService {
     public List<Puesto_Trabajo> listar() {
         return pR.findAll();
     }
+
+    @Override
+    public void delete(int id) {
+        pR.deleteById(id);
+    }
 }

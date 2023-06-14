@@ -15,13 +15,18 @@ public class ReclutadorServiceImplement implements IReclutadorService {
     private IReclutadorRepository rR;
 
     @Override
-    public void insertar(Reclutador reclutador) {
+    public void insert(Reclutador reclutador) {
         rR.save(reclutador);
     }
 
     @Override
     public List<Reclutador> listar() {
         return rR.findAll();
+    }
+
+    @Override
+    public void delete(int id) {
+        rR.deleteById(id);
     }
 
     @Override
