@@ -13,8 +13,12 @@ public class UsuarioServiceImplement implements IUsuarioService {
     @Autowired
     private IUsuarioRepository uR;
     @Override
-    public void insert(Usuario usuario) {
-        uR.save(usuario);
+    public Integer insert(Usuario usuario) {
+        int rpta = uR.buscarUsername(usuario.getUsuario_Usuario());
+        if (rpta == 0) {
+            uR.save(usuario);
+        }
+        return rpta;
     }
 
     @Override
@@ -31,4 +35,5 @@ public class UsuarioServiceImplement implements IUsuarioService {
     public Usuario listId(int idUsuario) {
         return uR.findById(idUsuario).orElse(new Usuario());
     }
+
 }
