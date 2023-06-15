@@ -1,6 +1,7 @@
 package pe.edu.upc.connection2connection.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="Usuarios")
@@ -8,7 +9,7 @@ public class Usuario {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idUsuario;
+    private Long idUsuario;
     @Column(name="dni_Usuario",length = 6,nullable = false)
     private int dni_Usuario;
     @Column(name="usuario_Usuario",length = 60,nullable = false)
@@ -19,30 +20,30 @@ public class Usuario {
     private String correo_Usuario;
     @Column(name="contrasena_Usuario",length = 60,nullable = false)
     private String contrasena_Usuario;
-    @Column(name="tipo_Usuario",length = 60,nullable = false)
-    private String tipo_Usuario;
-    @Column(name="key")
-    private String key;
+    private Boolean enabled;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private List<Role> roles;
 
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, int dni_Usuario, String usuario_Usuario, String nombre_Usuario, String correo_Usuario, String contrasena_Usuario, String tipo_Usuario, String key) {
+    public Usuario(Long idUsuario, int dni_Usuario, String usuario_Usuario, String nombre_Usuario, String correo_Usuario, String contrasena_Usuario, Boolean enabled, List<Role> roles) {
         this.idUsuario = idUsuario;
         this.dni_Usuario = dni_Usuario;
         this.usuario_Usuario = usuario_Usuario;
         this.nombre_Usuario = nombre_Usuario;
         this.correo_Usuario = correo_Usuario;
         this.contrasena_Usuario = contrasena_Usuario;
-        this.tipo_Usuario = tipo_Usuario;
-        this.key = key;
+        this.enabled = enabled;
+        this.roles = roles;
     }
 
-    public int getIdUsuario() {
+    public Long getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
+    public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
 
@@ -86,19 +87,19 @@ public class Usuario {
         this.contrasena_Usuario = contrasena_Usuario;
     }
 
-    public String getTipo_Usuario() {
-        return tipo_Usuario;
+    public Boolean getEnabled() {
+        return enabled;
     }
 
-    public void setTipo_Usuario(String tipo_Usuario) {
-        this.tipo_Usuario = tipo_Usuario;
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
-    public String getKey() {
-        return key;
+    public List<Role> getRoles() {
+        return roles;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }

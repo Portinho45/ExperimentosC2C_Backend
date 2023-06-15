@@ -5,10 +5,10 @@ import pe.edu.upc.connection2connection.entities.Usuario;
 import java.util.List;
 
 public interface IUsuarioService {
-    public void insert(Usuario usuario);
+    public Integer insert(Usuario usuario);
     List<Usuario> list();
 
-    public void delete(int id);
+    public void delete(Long id);
 
-    public Usuario listId(int id);
+    public Usuario listId(Long id);
 }
