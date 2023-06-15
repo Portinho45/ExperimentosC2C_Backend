@@ -1,14 +1,19 @@
 package pe.edu.upc.connection2connection.services;
 
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 import pe.edu.upc.connection2connection.entities.Usuario;
 
 import java.util.List;
 
 public interface IUsuarioService {
-    public void insert(Usuario usuario);
+    public Integer insert(Usuario usuario);
     List<Usuario> list();
 
     public void delete(int id);
 
     public Usuario listId(int id);
+
 }

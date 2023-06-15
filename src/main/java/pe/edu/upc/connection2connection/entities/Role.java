@@ -2,46 +2,51 @@ package pe.edu.upc.connection2connection.entities;
 
 import java.io.Serializable;
 
-import javax.persistence.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "roles")
-public class Role {
+@Table(name = "roles", uniqueConstraints = { @UniqueConstraint(columnNames = { "usuario_id", "rol" }) })
+public class Role implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
+
 
     private String rol;
 
     @ManyToOne
-    @JoinColumn(name="Usuario_id", nullable=false)
+
+    @JoinColumn(name="usuario_id", nullable=false)
     private Usuario usuario;
-
-    public Role(){
-
-    }
-    public Role(int id, String rol, Usuario usuario) {
-        this.id = id;
-        this.rol = rol;
-        this.usuario = usuario;
-    }
 
 
     //GETTERS AND SETTERES
 
-    public Usuario getUsuario() {
+    public Usuario getUser() {
         return usuario;
     }
 
-    public void setUsuario(Usuario user) {
+    public void setUser(Usuario user) {
         this.usuario = usuario;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
+
         this.id = id;
     }
 

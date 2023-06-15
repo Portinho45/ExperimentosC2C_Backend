@@ -1,5 +1,8 @@
 package pe.edu.upc.connection2connection.dtos;
 
+import java.util.List;
+import pe.edu.upc.connection2connection.entities.Role;
+
 public class UsuarioDTO {
     private int idUsuario;
     private int dni_Usuario;
@@ -9,6 +12,8 @@ public class UsuarioDTO {
     private String contrasena_Usuario;
     private String tipo_Usuario;
     private String key;
+
+    private List<Role> roles;
 
     public int getIdUsuario() {
         return idUsuario;
