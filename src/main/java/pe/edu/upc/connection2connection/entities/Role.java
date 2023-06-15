@@ -2,6 +2,7 @@ package pe.edu.upc.connection2connection.entities;
 
 import java.io.Serializable;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,9 +22,11 @@ public class Role implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     private String rol;
 
     @ManyToOne
+
     @JoinColumn(name="usuario_id", nullable=false)
     private Usuario usuario;
 
@@ -43,6 +46,7 @@ public class Role implements Serializable {
     }
 
     public void setId(Long id) {
+
         this.id = id;
     }
 
