@@ -25,6 +25,10 @@ public class Usuario {
     @JoinColumn(name = "user_id")
     private List<Role> roles;
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private List<Role> roles;
+
     public Usuario() {
     }
 
@@ -93,6 +97,14 @@ public class Usuario {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 
     public List<Role> getRoles() {

@@ -36,4 +36,5 @@ public class UsuarioServiceImplement implements IUsuarioService {
     public Usuario listId(Long idUsuario) {
         return uR.findById(idUsuario).orElse(new Usuario());
     }
+
 }

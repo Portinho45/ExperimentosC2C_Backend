@@ -1,11 +1,19 @@
 package pe.edu.upc.connection2connection.entities;
 
-import javax.persistence.*;
 import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "roles", uniqueConstraints = { @UniqueConstraint(columnNames = { "usuario_id", "rol" }) })
 public class Role implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -16,16 +24,16 @@ public class Role implements Serializable {
     @JoinColumn(name="usuario_id", nullable=false)
     private Usuario usuario;
 
-    public Role() {
+    //GETTERS AND SETTERES
+
+    public Usuario getUser() {
+        return usuario;
     }
 
-    public Role(Long id, String rol, Usuario usuario) {
-        this.id = id;
-        this.rol = rol;
+    public void setUser(Usuario user) {
         this.usuario = usuario;
     }
 
-    //GETTERS AND SETTERES
 
     public Long getId() {
         return id;
@@ -42,7 +50,6 @@ public class Role implements Serializable {
     public void setRol(String rol) {
         this.rol = rol;
     }
-
     public Usuario getUsuario() {
         return usuario;
     }
@@ -51,3 +58,4 @@ public class Role implements Serializable {
         this.usuario = usuario;
     }
 }
+

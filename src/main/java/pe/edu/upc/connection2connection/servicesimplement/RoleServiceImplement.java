@@ -8,18 +8,18 @@ import pe.edu.upc.connection2connection.services.IRoleService;
 
 import java.util.List;
 @Service
-public class RoleServiceImpl implements IRoleService {
-	@Autowired
-	private IRoleRepository rR;
+public class RoleServiceImplement implements IRoleService {
+    @Autowired
+    private IRoleRepository rR;
 
-	@Override
-	public void insert(Role role) {
-		rR.save(role);
-	}
+    @Override
+    public void insert(Role role) {
+        rR.save(role);
+    }
 
-	@Override
-	public List<Role> list() {
-		// TODO Auto-generated method stub
-		return rR.findAll();
-	}
+    @Override
+    public List<Role> list() {
+        // TODO Auto-generated method stub
+        return rR.findAll();
+    }
 }

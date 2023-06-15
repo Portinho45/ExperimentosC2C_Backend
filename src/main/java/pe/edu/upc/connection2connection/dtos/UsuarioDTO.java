@@ -1,11 +1,11 @@
 package pe.edu.upc.connection2connection.dtos;
 
+import java.util.List;
 import pe.edu.upc.connection2connection.entities.Role;
 
-import java.util.List;
 
 public class UsuarioDTO {
-    private int idUsuario;
+    private Long idUsuario;
     private int dni_Usuario;
     private String usuario_Usuario;
     private String nombre_Usuario;
@@ -14,11 +14,13 @@ public class UsuarioDTO {
     private Boolean enabled;
     private List<Role> roles;
 
-    public int getIdUsuario() {
+    private List<Role> roles;
+
+    public Long getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
+    public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
 
