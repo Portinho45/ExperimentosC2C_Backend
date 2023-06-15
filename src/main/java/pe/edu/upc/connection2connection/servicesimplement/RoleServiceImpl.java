@@ -7,8 +7,6 @@ import pe.edu.upc.connection2connection.repositories.IRoleRepository;
 import pe.edu.upc.connection2connection.services.IRoleService;
 
 import java.util.List;
-
-
 @Service
 public class RoleServiceImpl implements IRoleService {
 	@Autowired

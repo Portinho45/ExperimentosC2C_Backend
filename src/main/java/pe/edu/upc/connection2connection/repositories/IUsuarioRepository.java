@@ -7,21 +7,17 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Repository;
 import pe.edu.upc.connection2connection.entities.Usuario;
-
 @Repository
-public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
-
+public interface IUsuarioRepository extends JpaRepository<Usuario, Long> {
     public Usuario findByUsername(String username);
 
     //BUSCAR POR NOMBRE
-    @Query("select count(u.usuario_Usuario) from Usuario u where u.usuario_Usuario =:usuario_Usuario")
-    public int buscarUsername(@Param("usuario_Usuario") String nombre);
-
-
+    @Query("select count(u.nombre_Usuario) from Usuario u where u.nombre_Usuario =:username")
+    public int buscarUsername(@Param("username") String nombre);
+  
     //INSERTAR ROLES
     @Transactional
     @Modifying
-    @Query(value = "insert into roles (rol, user_id) VALUES (:rol, :user_id)", nativeQuery = true)
+    @Query(value = "insert into roles (rol, usuario_id) VALUES (:rol, :user_id)", nativeQuery = true)
     public void insRol(@Param("rol") String authority, @Param("user_id") Long user_id);
-
 }

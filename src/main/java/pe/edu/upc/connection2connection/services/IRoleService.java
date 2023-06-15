@@ -5,9 +5,8 @@ import java.util.List;
 
 
 public interface IRoleService {
-	public void insert(Role role);
+    public void insert(Role role);
 
-	List<Role> list();
-
+    List<Role> list();
 
 }

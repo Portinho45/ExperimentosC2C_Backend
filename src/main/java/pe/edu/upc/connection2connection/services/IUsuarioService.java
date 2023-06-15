@@ -12,8 +12,8 @@ public interface IUsuarioService {
     public Integer insert(Usuario usuario);
     List<Usuario> list();
 
-    public void delete(int id);
+    public void delete(Long id);
 
-    public Usuario listId(int id);
+    public Usuario listId(Long id);
 
 }

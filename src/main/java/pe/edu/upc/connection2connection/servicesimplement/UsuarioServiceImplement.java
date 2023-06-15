@@ -14,7 +14,8 @@ public class UsuarioServiceImplement implements IUsuarioService {
     private IUsuarioRepository uR;
     @Override
     public Integer insert(Usuario usuario) {
-        int rpta = uR.buscarUsername(usuario.getUsuario_Usuario());
+
+        int rpta = uR.buscarUsername(usuario.getNombre_Usuario());
         if (rpta == 0) {
             uR.save(usuario);
         }
@@ -27,12 +28,12 @@ public class UsuarioServiceImplement implements IUsuarioService {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(Long id) {
         uR.deleteById(id);
     }
 
     @Override
-    public Usuario listId(int idUsuario) {
+    public Usuario listId(Long idUsuario) {
         return uR.findById(idUsuario).orElse(new Usuario());
     }
 

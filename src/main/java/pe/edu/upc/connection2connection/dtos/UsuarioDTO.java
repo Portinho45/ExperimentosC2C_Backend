@@ -3,23 +3,24 @@ package pe.edu.upc.connection2connection.dtos;
 import java.util.List;
 import pe.edu.upc.connection2connection.entities.Role;
 
+
 public class UsuarioDTO {
-    private int idUsuario;
+    private Long idUsuario;
     private int dni_Usuario;
     private String usuario_Usuario;
     private String nombre_Usuario;
     private String correo_Usuario;
     private String contrasena_Usuario;
-    private String tipo_Usuario;
-    private String key;
+    private Boolean enabled;
+    private List<Role> roles;
 
     private List<Role> roles;
 
-    public int getIdUsuario() {
+    public Long getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
+    public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
 
@@ -63,19 +64,19 @@ public class UsuarioDTO {
         this.contrasena_Usuario = contrasena_Usuario;
     }
 
-    public String getTipo_Usuario() {
-        return tipo_Usuario;
+    public Boolean getEnabled() {
+        return enabled;
     }
 
-    public void setTipo_Usuario(String tipo_Usuario) {
-        this.tipo_Usuario = tipo_Usuario;
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
-    public String getKey() {
-        return key;
+    public List<Role> getRoles() {
+        return roles;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }

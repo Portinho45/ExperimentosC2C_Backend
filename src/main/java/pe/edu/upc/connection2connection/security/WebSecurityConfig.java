@@ -19,6 +19,7 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 
 //@Profile(value = {"development", "production"})
 //Clase S7
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
