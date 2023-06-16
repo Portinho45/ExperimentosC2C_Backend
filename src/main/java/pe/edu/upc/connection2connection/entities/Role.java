@@ -26,15 +26,6 @@ public class Role implements Serializable {
 
     //GETTERS AND SETTERES
 
-    public Usuario getUser() {
-        return usuario;
-    }
-
-    public void setUser(Usuario user) {
-        this.usuario = usuario;
-    }
-
-
     public Long getId() {
         return id;
     }

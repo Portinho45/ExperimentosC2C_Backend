@@ -1,4 +1,6 @@
 package pe.edu.upc.connection2connection.servicesimplement;
+import pe.edu.upc.connection2connection.entities.Usuario;
+import pe.edu.upc.connection2connection.repositories.IUsuarioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -8,8 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import pe.edu.upc.connection2connection.entities.Usuario;
-import pe.edu.upc.connection2connection.repositories.IUsuarioRepository;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,19 +22,19 @@ public class JwtUserDetailsService implements UserDetailsService {
     private IUsuarioRepository uR;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Usuario user = uR.findByUsername(username);
+        Usuario usuario = uR.findByUsername(username);
 
-        if(user == null) {
+        if(usuario == null) {
             throw new UsernameNotFoundException(String.format("User not exists", username));
         }
 
         List<GrantedAuthority> roles = new ArrayList<>();
 
-        user.getRoles().forEach(rol -> {
+        usuario.getRoles().forEach(rol -> {
             roles.add(new SimpleGrantedAuthority(rol.getRol()));
         });
 
-        UserDetails ud = new org.springframework.security.core.userdetails.User(user.getNombre_Usuario(), user.getContrasena_Usuario(), user.getEnabled(), true, true, true, roles);
+        UserDetails ud = new org.springframework.security.core.userdetails.User(usuario.getUsername(), usuario.getContrasena_Usuario(), usuario.getEnabled(), true, true, true, roles);
 
         return ud;
     }

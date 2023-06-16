@@ -27,57 +27,37 @@ public class UsuarioController {
     @Autowired
     private PasswordEncoder bcrypt;
     @Autowired
-    private PasswordEncoder bcrypt;
-    @Autowired
-    private IUsuarioService uService;
+    private IUsuarioService uS;
 
-    @PostMapping("/save")
-    public String saveUser(@Valid Usuario user, BindingResult result, Model model, SessionStatus status)
-            throws Exception {
-        if (result.hasErrors()) {
-            return "usersecurity/user";
-        } else {
-            String bcryptPassword = bcrypt.encode(user.getContrasena_Usuario());
-            user.setContrasena_Usuario(bcryptPassword);
-            int rpta = uService.insert(user);
-            if (rpta > 0) {
-                model.addAttribute("mensaje", "Ya existe");
-                return "usersecurity/user";
-            } else {
-                model.addAttribute("mensaje", "Se guardó correctamente");
-                status.setComplete();
-            }
-        }
-        model.addAttribute("listaUsuarios", uService.list());
-
-        return "usersecurity/listUser";
+    @PostMapping
+    public void insert(@RequestBody UsuarioDTO dto){
+        ModelMapper m = new ModelMapper();
+        Usuario u = m.map(dto,Usuario.class);
+        uS.insert(u);
     }
 
-    @GetMapping("/list")
-    public String listUser(Model model) {
-        try {
-            model.addAttribute("user", new Usuario());
-            model.addAttribute("listaUsuarios", uService.list());
-        } catch (Exception e) {
-            model.addAttribute("error", e.getMessage());
-        }
-        return "usersecurity/listUser";
+    @GetMapping
+    public List<UsuarioDTO> list(){
+        return uS.list().stream().map(x->{
+            ModelMapper m = new ModelMapper();
+            return m.map(x, UsuarioDTO.class);
+        }).collect(Collectors.toList());
     }
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id")Long id){
-        uService.delete(id);
+    public void delete(@PathVariable("id")long id){
+        uS.delete(id);
     }
     @GetMapping("/{id}")
-    public UsuarioDTO ListId(@PathVariable("id")Long id){
+    public UsuarioDTO ListId(@PathVariable("id")long id){
         ModelMapper m = new ModelMapper();
-        UsuarioDTO dto = m.map(uService.listId(id), UsuarioDTO.class);
+        UsuarioDTO dto = m.map(uS.listId(id), UsuarioDTO.class);
         return dto;
     }
     @PutMapping
     public void goUpdate(@RequestBody UsuarioDTO dto){
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto, Usuario.class);
-        uService.insert(u);
+        uS.insert(u);
     }
 
     @PostMapping("/save")
@@ -105,7 +85,7 @@ public class UsuarioController {
     @GetMapping("/list")
     public String listUser(Model model) {
         try {
-            model.addAttribute("usuario", new Usuario());
+            model.addAttribute("user", new Usuario());
             model.addAttribute("listaUsuarios", uS.list());
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());

@@ -15,7 +15,7 @@ public class UsuarioServiceImplement implements IUsuarioService {
     @Override
     public Integer insert(Usuario usuario) {
 
-        int rpta = uR.buscarUsername(usuario.getNombre_Usuario());
+        int rpta = uR.buscarUsername(usuario.getUsername());
         if (rpta == 0) {
             uR.save(usuario);
         }

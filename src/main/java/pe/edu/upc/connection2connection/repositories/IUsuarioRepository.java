@@ -12,7 +12,7 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Long> {
     public Usuario findByUsername(String username);
 
     //BUSCAR POR NOMBRE
-    @Query("select count(u.nombre_Usuario) from Usuario u where u.nombre_Usuario =:username")
+    @Query("select count(u.username) from Usuario u where u.username =:username")
     public int buscarUsername(@Param("username") String nombre);
   
     //INSERTAR ROLES

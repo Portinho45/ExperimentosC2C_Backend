@@ -14,8 +14,6 @@ public class UsuarioDTO {
     private Boolean enabled;
     private List<Role> roles;
 
-    private List<Role> roles;
-
     public Long getIdUsuario() {
         return idUsuario;
     }

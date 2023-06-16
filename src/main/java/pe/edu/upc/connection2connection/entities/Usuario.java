@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="Usuarios")
+@Table(name="usuarios")
 public class Usuario {
     
     @Id
@@ -12,30 +12,27 @@ public class Usuario {
     private Long idUsuario;
     @Column(name="dni_Usuario",length = 6,nullable = false)
     private int dni_Usuario;
-    @Column(name="usuario_Usuario",length = 60,nullable = false)
-    private String usuario_Usuario;
+    @Column(name="username", length = 60, nullable = false, unique = true)
+    private String username;
     @Column(name="nombre_Usuario",length = 60,nullable = false)
     private String nombre_Usuario;
+
     @Column(name="correo_Usuario",length = 60,nullable = false)
     private String correo_Usuario;
     @Column(name="contrasena_Usuario",length = 60,nullable = false)
     private String contrasena_Usuario;
     private Boolean enabled;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private List<Role> roles;
-
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "usuario_id")
     private List<Role> roles;
 
     public Usuario() {
     }
 
-    public Usuario(Long idUsuario, int dni_Usuario, String usuario_Usuario, String nombre_Usuario, String correo_Usuario, String contrasena_Usuario, Boolean enabled, List<Role> roles) {
+    public Usuario(Long idUsuario, int dni_Usuario, String username, String nombre_Usuario, String correo_Usuario, String contrasena_Usuario, Boolean enabled, List<Role> roles) {
         this.idUsuario = idUsuario;
         this.dni_Usuario = dni_Usuario;
-        this.usuario_Usuario = usuario_Usuario;
+        this.username = username;
         this.nombre_Usuario = nombre_Usuario;
         this.correo_Usuario = correo_Usuario;
         this.contrasena_Usuario = contrasena_Usuario;
@@ -59,12 +56,12 @@ public class Usuario {
         this.dni_Usuario = dni_Usuario;
     }
 
-    public String getUsuario_Usuario() {
-        return usuario_Usuario;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUsuario_Usuario(String usuario_Usuario) {
-        this.usuario_Usuario = usuario_Usuario;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getNombre_Usuario() {
@@ -97,14 +94,6 @@ public class Usuario {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
-    }
-
-    public List<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
     }
 
     public List<Role> getRoles() {
