@@ -7,7 +7,7 @@ import pe.edu.upc.connection2connection.entities.Role;
 public class UsuarioDTO {
     private Long idUsuario;
     private int dni_Usuario;
-    private String usuario_Usuario;
+    private String username;
     private String nombre_Usuario;
     private String correo_Usuario;
     private String contrasena_Usuario;
@@ -30,12 +30,12 @@ public class UsuarioDTO {
         this.dni_Usuario = dni_Usuario;
     }
 
-    public String getUsuario_Usuario() {
-        return usuario_Usuario;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUsuario_Usuario(String usuario_Usuario) {
-        this.usuario_Usuario = usuario_Usuario;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getNombre_Usuario() {
