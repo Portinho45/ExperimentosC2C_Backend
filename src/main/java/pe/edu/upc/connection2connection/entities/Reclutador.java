@@ -1,5 +1,7 @@
 package pe.edu.upc.connection2connection.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,10 +14,12 @@ public class Reclutador {
     @Column(name = "Descripcion_Reclutador",length = 200,nullable = false)
     private String Descripcion_Reclutador;
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "Empresa_id")
     private Empresa empresa;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "Usuario_id")
     private Usuario usuario;
 

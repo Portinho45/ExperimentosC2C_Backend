@@ -1,5 +1,7 @@
 package pe.edu.upc.connection2connection.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +23,7 @@ public class Role implements Serializable {
     private Long id;
     private String rol;
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name="usuario_id", nullable=false)
     private Usuario usuario;
 

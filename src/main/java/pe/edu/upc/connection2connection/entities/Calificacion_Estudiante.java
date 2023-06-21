@@ -1,5 +1,7 @@
 package pe.edu.upc.connection2connection.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,9 +11,11 @@ public class Calificacion_Estudiante {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "Estudiante_id")
     private Estudiante estudiante;
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "Calificacion_id")
     private Calificacion calificacion;
 

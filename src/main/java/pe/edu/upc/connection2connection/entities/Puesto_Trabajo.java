@@ -1,5 +1,7 @@
 package pe.edu.upc.connection2connection.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,10 +13,12 @@ public class Puesto_Trabajo {
     private int id;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "Requisito_id")
     private Requisito requisito;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "Reclutador_id")
     private Reclutador reclutador;
 

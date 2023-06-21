@@ -1,5 +1,7 @@
 package pe.edu.upc.connection2connection.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,10 +17,12 @@ public class Match {
     private boolean confirmacion_match;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "Reclutador_id")
     private Reclutador reclutador;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "Estudiante_id")
     private Estudiante estudiante;
 
