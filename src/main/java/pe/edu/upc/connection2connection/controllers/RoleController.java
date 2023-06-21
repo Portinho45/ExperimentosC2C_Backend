@@ -1,15 +1,22 @@
 package pe.edu.upc.connection2connection.controllers;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
+import pe.edu.upc.connection2connection.dtos.EmpresaDTO;
+import pe.edu.upc.connection2connection.dtos.RoleDTO;
 import pe.edu.upc.connection2connection.services.IUsuarioService;
 import pe.edu.upc.connection2connection.entities.Role;
 import pe.edu.upc.connection2connection.services.IRoleService;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -44,7 +51,17 @@ public class RoleController {
 
     }
 
+    @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public List<RoleDTO> list(){
+        return rS.list().stream().map(x->{
+            ModelMapper m = new ModelMapper();
+            return m.map(x, RoleDTO.class);
+        }).collect(Collectors.toList());
+    }
+
     @GetMapping("/list")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String listRole(Model model) {
         try {
             model.addAttribute("role", new Role());

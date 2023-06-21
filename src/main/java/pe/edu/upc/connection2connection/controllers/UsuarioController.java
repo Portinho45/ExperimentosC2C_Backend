@@ -2,6 +2,7 @@ package pe.edu.upc.connection2connection.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,6 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 @Controller
-@Secured({"ROLE_ADMIN"})
 @RequestMapping("/usuarios")
 public class UsuarioController {
 
@@ -37,6 +37,7 @@ public class UsuarioController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<UsuarioDTO> list(){
         return uS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();

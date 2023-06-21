@@ -3,6 +3,7 @@ package pe.edu.upc.connection2connection.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.connection2connection.dtos.InstitucionDTO;
 import pe.edu.upc.connection2connection.entities.Institucion;
@@ -18,6 +19,7 @@ public class InstitucionController {
     private IInstitucionService iS;
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void insert(@RequestBody InstitucionDTO dto){
         ModelMapper m = new ModelMapper();
         Institucion i = m.map(dto,Institucion.class);
@@ -25,6 +27,7 @@ public class InstitucionController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('ESTUDIANTE') or hasAuthority('RECLUTADOR')")
     public List<InstitucionDTO> list(){
         return iS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -32,6 +35,7 @@ public class InstitucionController {
         }).collect(Collectors.toList());
     }
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void delete(@PathVariable("id")Integer id){
         iS.delete(id);
     }
@@ -42,6 +46,7 @@ public class InstitucionController {
         return dto;
     }
     @PutMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void goUpdate(@RequestBody InstitucionDTO dto){
         ModelMapper m = new ModelMapper();
         Institucion i = m.map(dto, Institucion.class);

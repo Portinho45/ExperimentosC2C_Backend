@@ -19,6 +19,7 @@ public class EmpresaController {
     private IEmpresaService aS;
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void insert(@RequestBody EmpresaDTO dto){
         ModelMapper m = new ModelMapper();
         Empresa e = m.map(dto,Empresa.class);
@@ -26,7 +27,7 @@ public class EmpresaController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('ESTUDIANTE') or hasAuthority('RECLUTADOR')")
     public List<EmpresaDTO> list(){
         return aS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -34,6 +35,7 @@ public class EmpresaController {
         }).collect(Collectors.toList());
     }
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void delete(@PathVariable("id")Integer id){
         aS.delete(id);
     }
@@ -44,6 +46,7 @@ public class EmpresaController {
         return dto;
     }
     @PutMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void goUpdate(@RequestBody EmpresaDTO dto){
         ModelMapper m = new ModelMapper();
         Empresa e = m.map(dto, Empresa.class);

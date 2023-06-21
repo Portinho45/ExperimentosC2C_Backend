@@ -14,6 +14,7 @@ public class Reclutador {
     @ManyToOne
     @JoinColumn(name = "Empresa_id")
     private Empresa empresa;
+
     @ManyToOne
     @JoinColumn(name = "Usuario_id")
     private Usuario usuario;

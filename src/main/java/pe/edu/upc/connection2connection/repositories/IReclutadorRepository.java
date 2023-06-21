@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import pe.edu.upc.connection2connection.entities.Empresa;
 import pe.edu.upc.connection2connection.entities.Reclutador;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Repository

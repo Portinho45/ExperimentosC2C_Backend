@@ -3,8 +3,8 @@ package pe.edu.upc.connection2connection.controllers;
 import io.swagger.annotations.ApiOperation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.connection2connection.dtos.EmpresaDTO;
 import pe.edu.upc.connection2connection.dtos.ReclutadorDTO;
 import pe.edu.upc.connection2connection.entities.Empresa;
 import pe.edu.upc.connection2connection.entities.Reclutador;
@@ -29,6 +29,7 @@ public class ReclutadorController {
 
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<ReclutadorDTO> listar() {
         return rS.listar().stream().map(x->{
             ModelMapper m=new ModelMapper();
