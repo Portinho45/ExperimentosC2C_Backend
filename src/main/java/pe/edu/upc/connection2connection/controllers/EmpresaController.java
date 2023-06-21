@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.connection2connection.dtos.EmpresaDTO;
+import pe.edu.upc.connection2connection.dtos.EmpresaReclutadorDTO;
 import pe.edu.upc.connection2connection.entities.Empresa;
 import pe.edu.upc.connection2connection.services.IEmpresaService;
 
@@ -52,4 +53,12 @@ public class EmpresaController {
         Empresa e = m.map(dto, Empresa.class);
         aS.insert(e);
     }
+
+    @GetMapping("/empresa-count")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public List<EmpresaReclutadorDTO> obtenerNumeroReclutadoresEmpresa() {
+        List<EmpresaReclutadorDTO> EmpresaReclutadorDTO = aS.reporte01();
+        return EmpresaReclutadorDTO;
+    }
+
 }
