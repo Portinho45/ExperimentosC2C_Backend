@@ -44,9 +44,10 @@ public class RepositorioServiceImplement implements IRepositorioService {
         for (String[] data : obtenerNumRepositorios) {
             RepositorioEstudianteDTO dto = new RepositorioEstudianteDTO();
             dto.setNameEstudiante(data[0]);
-            dto.setEdadEstudiante(Integer.parseInt(data[1]));
-            dto.setPracticanteEstudiante(Boolean.parseBoolean(data[2]));
-            dto.setRepositorioCount(Integer.parseInt(data[3]));
+            dto.setCorreoEstudiante(data[1]);
+            dto.setEdadEstudiante(Integer.parseInt(data[2]));
+            dto.setPracticanteEstudiante(Boolean.parseBoolean(data[3]));
+            dto.setRepositorioCount(Integer.parseInt(data[4]));
             RepositorioEstudianteDTOs.add(dto);
         }
 

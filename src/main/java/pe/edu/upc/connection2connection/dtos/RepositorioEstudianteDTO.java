@@ -4,6 +4,8 @@ public class RepositorioEstudianteDTO {
 
     private String nameEstudiante;
 
+    private String correoEstudiante;
+
     private int edadEstudiante;
 
     private boolean practicanteEstudiante;
@@ -14,8 +16,9 @@ public class RepositorioEstudianteDTO {
 
     }
 
-    public RepositorioEstudianteDTO(String nameEstudiante, int edadEstudiante, boolean practicanteEstudiante, int repositorioCount) {
+    public RepositorioEstudianteDTO(String nameEstudiante, String correoEstudiante, int edadEstudiante, boolean practicanteEstudiante, int repositorioCount) {
         this.nameEstudiante = nameEstudiante;
+        this.correoEstudiante = correoEstudiante;
         this.edadEstudiante = edadEstudiante;
         this.practicanteEstudiante = practicanteEstudiante;
         this.repositorioCount = repositorioCount;
@@ -29,6 +32,14 @@ public class RepositorioEstudianteDTO {
         this.nameEstudiante = nameEstudiante;
     }
 
+    public String getCorreoEstudiante() {
+        return correoEstudiante;
+    }
+
+    public void setCorreoEstudiante(String correoEstudiante) {
+        this.correoEstudiante = correoEstudiante;
+    }
+
     public int getEdadEstudiante() {
         return edadEstudiante;
     }
@@ -37,7 +48,7 @@ public class RepositorioEstudianteDTO {
         this.edadEstudiante = edadEstudiante;
     }
 
-    public boolean getPracticanteEstudiante() {
+    public boolean isPracticanteEstudiante() {
         return practicanteEstudiante;
     }
 
