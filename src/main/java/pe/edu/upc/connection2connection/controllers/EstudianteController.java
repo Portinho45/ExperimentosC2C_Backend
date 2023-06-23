@@ -2,6 +2,7 @@ package pe.edu.upc.connection2connection.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.connection2connection.dtos.EmpresaDTO;
 import pe.edu.upc.connection2connection.dtos.EstudianteDTO;
@@ -26,6 +27,7 @@ public class EstudianteController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<EstudianteDTO> listar() {
         return eS.listar().stream().map(x->{
             ModelMapper m=new ModelMapper();
