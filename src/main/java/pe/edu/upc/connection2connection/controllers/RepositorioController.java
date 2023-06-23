@@ -23,7 +23,7 @@ public class RepositorioController {
     @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('ESTUDIANTE')")
     public void insert(@RequestBody RepositorioDTO dto){
         ModelMapper m = new ModelMapper();
-        Repositorio r = m.map(dto,Repositorio.class);
+        Repositorio r = m.map(dto, Repositorio.class);
         rS.insert(r);
     }
 
