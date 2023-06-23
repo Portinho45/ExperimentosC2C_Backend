@@ -30,6 +30,11 @@ public class ReclutadorServiceImplement implements IReclutadorService {
     }
 
     @Override
+    public Reclutador ListId(int id) {
+        return rR.findById(id).orElse(new Reclutador());
+    }
+
+    @Override
     public List<Reclutador> buscarEmpresa(Empresa Empresa_id) {
         return rR.findBynombreEmpresa(Empresa_id);
     }

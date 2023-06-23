@@ -22,4 +22,10 @@ public class RoleServiceImplement implements IRoleService {
         // TODO Auto-generated method stub
         return rR.findAll();
     }
+
+
+    @Override
+    public Role ListId(long id) {
+        return rR.findById(id).orElse(new Role());
+    }
 }

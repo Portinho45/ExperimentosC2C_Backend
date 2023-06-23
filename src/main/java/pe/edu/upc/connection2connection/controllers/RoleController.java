@@ -9,9 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
-import pe.edu.upc.connection2connection.dtos.EmpresaDTO;
 import pe.edu.upc.connection2connection.dtos.RoleDTO;
-import pe.edu.upc.connection2connection.services.IUsuarioService;
 import pe.edu.upc.connection2connection.entities.Role;
 import pe.edu.upc.connection2connection.services.IRoleService;
 
@@ -23,32 +21,15 @@ import java.util.stream.Collectors;
 @SessionAttributes
 @RequestMapping("/roles")
 public class RoleController {
-
-    @Autowired
-    private IUsuarioService uService;
     @Autowired
     private IRoleService rS;
 
-    @GetMapping("/new")
-    public String newRole(Model model) {
-        model.addAttribute("role", new Role());
-        model.addAttribute("listaUsuarios", uService.list());
-        return "role/role";
-    }
-
-    @PostMapping("/save")
-    public String saveRole(@Validated Role role, BindingResult result, Model model, SessionStatus status) throws Exception {
-        if (result.hasErrors()) {
-            return "role/role";
-        } else {
-            rS.insert(role);
-            model.addAttribute("mensaje", "Se guardó correctamente");
-            status.setComplete();
-        }
-        model.addAttribute("listaRoles", rS.list());
-
-        return "role/role";
-
+    @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public void insert(@RequestBody RoleDTO dto){
+        ModelMapper m = new ModelMapper();
+        Role e = m.map(dto,Role.class);
+        rS.insert(e);
     }
 
     @GetMapping
@@ -60,16 +41,19 @@ public class RoleController {
         }).collect(Collectors.toList());
     }
 
-    @GetMapping("/list")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public String listRole(Model model) {
-        try {
-            model.addAttribute("role", new Role());
-            model.addAttribute("listaRoles", rS.list());
-        } catch (Exception e) {
-            model.addAttribute("error", e.getMessage());
-        }
-        return "role/listRole";
+    @GetMapping("/{id}")
+    public RoleDTO ListId(@PathVariable("id")Long id){
+        ModelMapper m = new ModelMapper();
+        RoleDTO dto = m.map(rS.ListId(id), RoleDTO.class);
+        return dto;
     }
+    @PutMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public void goUpdate(@RequestBody RoleDTO dto){
+        ModelMapper m = new ModelMapper();
+        Role e = m.map(dto, Role.class);
+        rS.insert(e);
+    }
+
 }
 

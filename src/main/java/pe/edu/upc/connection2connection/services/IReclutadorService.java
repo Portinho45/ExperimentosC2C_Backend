@@ -13,6 +13,8 @@ public interface IReclutadorService {
 
     public void delete(int id);
 
+    public Reclutador ListId(int id);
+
     List<Reclutador> buscarEmpresa(Empresa Empresa_id);
 
 }

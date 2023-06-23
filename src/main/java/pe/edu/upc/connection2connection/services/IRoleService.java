@@ -9,4 +9,6 @@ public interface IRoleService {
 
     List<Role> list();
 
+    public Role ListId(long id);
+
 }
