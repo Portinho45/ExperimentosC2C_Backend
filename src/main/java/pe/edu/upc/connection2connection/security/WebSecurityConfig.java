@@ -1,8 +1,10 @@
 package pe.edu.upc.connection2connection.security;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -58,6 +60,16 @@ public class WebSecurityConfig {
         httpSecurity
                 .csrf().disable()
                 .authorizeRequests()
+                .antMatchers(HttpMethod.POST,"/usuarios").permitAll()
+                .antMatchers(HttpMethod.GET,"/usuarios").permitAll()
+                .antMatchers(HttpMethod.POST,"/roles").permitAll()
+                .antMatchers(HttpMethod.GET,"/roles").permitAll()
+                .antMatchers(HttpMethod.POST,"/{username}").permitAll()
+                .antMatchers(HttpMethod.GET,"/usuarios/username/{username}").permitAll()
+                .antMatchers(HttpMethod.POST,"/estudiantes").permitAll()
+                .antMatchers(HttpMethod.GET,"/estudiantes").permitAll()
+                .antMatchers(HttpMethod.POST,"/reclutadores").permitAll()
+                .antMatchers(HttpMethod.GET,"/reclutadores").permitAll()
                 .antMatchers("/authenticate").permitAll() //.hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()

@@ -29,15 +29,9 @@ public class UsuarioController {
     @Autowired
     private IUsuarioService uS;
 
-    @PostMapping
-    public void insert(@RequestBody UsuarioDTO dto){
-        ModelMapper m = new ModelMapper();
-        Usuario u = m.map(dto,Usuario.class);
-        uS.insert(u);
-    }
+
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
     public List<UsuarioDTO> list(){
         return uS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -54,6 +48,12 @@ public class UsuarioController {
         UsuarioDTO dto = m.map(uS.listId(id), UsuarioDTO.class);
         return dto;
     }
+    @GetMapping("/username/{username}")
+    public UsuarioDTO ListUsername(@PathVariable("username")String name){
+        ModelMapper m = new ModelMapper();
+        UsuarioDTO dto = m.map(uS.listUsername(name), UsuarioDTO.class);
+        return dto;
+    }
     @PutMapping
     public void goUpdate(@RequestBody UsuarioDTO dto){
         ModelMapper m = new ModelMapper();
@@ -61,26 +61,19 @@ public class UsuarioController {
         uS.insert(u);
     }
 
-    @PostMapping("/save")
-    public String saveUser(@Valid Usuario usuario, BindingResult result, Model model, SessionStatus status)
+    @PostMapping
+    public String saveUser(@Valid Usuario usuario, BindingResult result, Model model, SessionStatus status,@RequestBody UsuarioDTO dto)
             throws Exception {
         if (result.hasErrors()) {
             return "usersecurity/user";
         } else {
-            String bcryptPassword = bcrypt.encode(usuario.getContrasena_Usuario());
-            usuario.setContrasena_Usuario(bcryptPassword);
-            int rpta = uS.insert(usuario);
-            if (rpta > 0) {
-                model.addAttribute("mensaje", "Ya existe");
-                return "usersecurity/user";
-            } else {
-                model.addAttribute("mensaje", "Se guardó correctamente");
-                status.setComplete();
-            }
+            ModelMapper m = new ModelMapper();
+            Usuario u = m.map(dto, Usuario.class);
+            String bcryptPassword = bcrypt.encode(u.getContrasena_Usuario());
+            u.setContrasena_Usuario(bcryptPassword);
+            uS.insert(u);
+            return "Usuario creado";
         }
-        model.addAttribute("listaUsuarios", uS.list());
-
-        return "usersecurity/listUser";
     }
 
     @GetMapping("/list")
