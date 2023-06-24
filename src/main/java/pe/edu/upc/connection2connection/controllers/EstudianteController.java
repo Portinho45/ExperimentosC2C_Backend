@@ -27,7 +27,6 @@ public class EstudianteController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
     public List<EstudianteDTO> listar() {
         return eS.listar().stream().map(x->{
             ModelMapper m=new ModelMapper();

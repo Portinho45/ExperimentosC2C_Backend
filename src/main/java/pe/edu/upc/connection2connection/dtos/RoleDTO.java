@@ -2,6 +2,8 @@ package pe.edu.upc.connection2connection.dtos;
 
 import pe.edu.upc.connection2connection.entities.Usuario;
 
+import java.util.List;
+
 public class RoleDTO {
     private Long id;
 
@@ -32,4 +34,5 @@ public class RoleDTO {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
 }

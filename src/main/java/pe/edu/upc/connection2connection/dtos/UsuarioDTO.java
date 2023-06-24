@@ -3,6 +3,8 @@ package pe.edu.upc.connection2connection.dtos;
 import java.util.List;
 import pe.edu.upc.connection2connection.entities.Role;
 
+import javax.persistence.Column;
+
 
 public class UsuarioDTO {
     private Long idUsuario;
@@ -13,6 +15,7 @@ public class UsuarioDTO {
     private String contrasena_Usuario;
     private Boolean enabled;
     private List<Role> roles;
+    private String rol;
 
     public Long getIdUsuario() {
         return idUsuario;
@@ -76,5 +79,13 @@ public class UsuarioDTO {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 }

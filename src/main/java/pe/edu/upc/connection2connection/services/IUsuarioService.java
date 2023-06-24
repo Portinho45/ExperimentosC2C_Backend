@@ -16,4 +16,6 @@ public interface IUsuarioService {
 
     public Usuario listId(Long id);
 
+    public Usuario listUsername(String name);
+
 }

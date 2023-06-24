@@ -3,14 +3,8 @@ package pe.edu.upc.connection2connection.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import java.util.List;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "roles", uniqueConstraints = { @UniqueConstraint(columnNames = { "usuario_id", "rol" }) })
@@ -24,10 +18,12 @@ public class Role implements Serializable {
     private String rol;
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name="usuario_id", nullable=false)
+    @JoinColumn(name="usuario_id")
     private Usuario usuario;
 
+
     //GETTERS AND SETTERES
+
 
     public Long getId() {
         return id;
@@ -44,6 +40,7 @@ public class Role implements Serializable {
     public void setRol(String rol) {
         this.rol = rol;
     }
+
     public Usuario getUsuario() {
         return usuario;
     }
@@ -51,5 +48,6 @@ public class Role implements Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
 }
 
