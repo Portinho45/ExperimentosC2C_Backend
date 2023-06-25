@@ -2,6 +2,7 @@ package pe.edu.upc.connection2connection.servicesimplement;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pe.edu.upc.connection2connection.dtos.EmpresaMatchDTO;
 import pe.edu.upc.connection2connection.dtos.EmpresaReclutadorDTO;
 import pe.edu.upc.connection2connection.entities.Empresa;
 import pe.edu.upc.connection2connection.repositories.IEmpresaRepository;
@@ -47,5 +48,20 @@ public class EmpresaServiceImplement implements IEmpresaService {
         }
 
         return EmpresaReclutadorDTOs;
+    }
+
+    @Override
+    public List<EmpresaMatchDTO> reporte10() {
+        List<String[]> MatchEmpresa = eR.MatchEmpresa();
+        List<EmpresaMatchDTO> EmpresaMatchDTOs = new ArrayList<>();
+
+        for (String[] data : MatchEmpresa) {
+            EmpresaMatchDTO dto = new EmpresaMatchDTO();
+            dto.setEmpresam(data[1]);
+            dto.setCountestudiantesmatch(Integer.parseInt(data[0]));
+            EmpresaMatchDTOs.add(dto);
+        }
+
+        return EmpresaMatchDTOs;
     }
 }
