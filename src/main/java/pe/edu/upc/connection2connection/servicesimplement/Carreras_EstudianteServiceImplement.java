@@ -20,4 +20,14 @@ public class Carreras_EstudianteServiceImplement implements ICarreras_Estudiante
         return cR.findAll();
     }
 
+    @Override
+    public void delete(int id) {
+        cR.deleteById(id);
+    }
+
+    @Override
+    public Carreras_Estudiante ListId(int id) {
+        return cR.findById(id).orElse(new Carreras_Estudiante());
+    }
+
 }
