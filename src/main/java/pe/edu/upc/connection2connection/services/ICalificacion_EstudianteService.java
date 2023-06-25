@@ -10,4 +10,8 @@ public interface ICalificacion_EstudianteService {
 
     List<Calificacion_Estudiante> listar();
 
+    public void delete(int id);
+
+    public Calificacion_Estudiante ListId(int id);
+
 }

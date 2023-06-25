@@ -20,7 +20,6 @@ public class EstudianteController {
     private IEstudianteService eS;
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('ESTUDIANTE')")
     public void registrar(@RequestBody EstudianteDTO dto) {
         ModelMapper m = new ModelMapper();
         Estudiante e = m.map(dto, Estudiante.class);
@@ -28,7 +27,6 @@ public class EstudianteController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('ESTUDIANTE') or hasAuthority('RECLUTADOR')")
     public List<EstudianteDTO> listar() {
         return eS.listar().stream().map(x->{
             ModelMapper m=new ModelMapper();

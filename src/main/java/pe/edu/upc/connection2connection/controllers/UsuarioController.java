@@ -32,7 +32,6 @@ public class UsuarioController {
 
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('ESTUDIANTE') or hasAuthority('RECLUTADOR')")
     public List<UsuarioDTO> list(){
         return uS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -65,7 +64,6 @@ public class UsuarioController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('ESTUDIANTE') or hasAuthority('RECLUTADOR')")
     public String saveUser(@Valid Usuario usuario, BindingResult result, Model model, SessionStatus status,@RequestBody UsuarioDTO dto)
             throws Exception {
         if (result.hasErrors()) {
@@ -81,7 +79,6 @@ public class UsuarioController {
     }
 
     @GetMapping("/list")
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('ESTUDIANTE') or hasAuthority('RECLUTADOR')")
     public String listUser(Model model) {
         try {
             model.addAttribute("user", new Usuario());
