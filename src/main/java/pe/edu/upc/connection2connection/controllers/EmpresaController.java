@@ -55,7 +55,7 @@ public class EmpresaController {
     }
 
     @GetMapping("/empresa-count")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('ESTUDIANTE') or hasAuthority('RECLUTADOR')")
     public List<EmpresaReclutadorDTO> obtenerNumeroReclutadoresEmpresa() {
         List<EmpresaReclutadorDTO> EmpresaReclutadorDTO = aS.reporte01();
         return EmpresaReclutadorDTO;

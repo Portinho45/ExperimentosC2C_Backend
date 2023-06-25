@@ -6,6 +6,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.connection2connection.dtos.EmpresaDTO;
 import pe.edu.upc.connection2connection.dtos.Puesto_TrabajoDTO;
+import pe.edu.upc.connection2connection.dtos.ReclutadorDTO;
 import pe.edu.upc.connection2connection.entities.Empresa;
 import pe.edu.upc.connection2connection.entities.Puesto_Trabajo;
 import pe.edu.upc.connection2connection.services.IPuesto_TrabajoService;
@@ -43,6 +44,14 @@ public class Puesto_TrabajoController {
     @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('RECLUTADOR')")
     public void delete(@PathVariable("id")Integer id){
         pS.delete(id);
+    }
+
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('ESTUDIANTE') or hasAuthority('RECLUTADOR')")
+    public Puesto_TrabajoDTO ListId(@PathVariable("id")Integer id){
+        ModelMapper m = new ModelMapper();
+        Puesto_TrabajoDTO dto = m.map(pS.ListId(id), Puesto_TrabajoDTO.class);
+        return dto;
     }
 
 

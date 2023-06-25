@@ -48,7 +48,7 @@ public class RequisitoController
     }
     @PutMapping
     @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('RECLUTADOR')")
-    public void goUpdate(@RequestBody EmpresaDTO dto){
+    public void goUpdate(@RequestBody RequisitoDTO dto){
         ModelMapper m = new ModelMapper();
         Requisito r = m.map(dto, Requisito.class);
         rS.insert(r);
