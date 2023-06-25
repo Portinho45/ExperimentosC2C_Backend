@@ -28,7 +28,6 @@ public class EmpresaController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('ESTUDIANTE') or hasAuthority('RECLUTADOR')")
     public List<EmpresaDTO> list(){
         return aS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
