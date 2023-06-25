@@ -22,4 +22,14 @@ public class Calificacion_EstudianteServiceImplement implements ICalificacion_Es
         return cR.findAll();
     }
 
+    @Override
+    public void delete(int id) {
+        cR.deleteById(id);
+    }
+
+    @Override
+    public Calificacion_Estudiante ListId(int id) {
+        return cR.findById(id).orElse(new Calificacion_Estudiante());
+    }
+
 }

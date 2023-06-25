@@ -20,4 +20,14 @@ public class MatchServiceImplement implements IMatchService {
     public List<Match> listar() {
         return mR.findAll();
     }
+
+    @Override
+    public void delete(int id) {
+        mR.deleteById(id);
+    }
+
+    @Override
+    public Match ListId(int id) {
+        return mR.findById(id).orElse(new Match());
+    }
 }

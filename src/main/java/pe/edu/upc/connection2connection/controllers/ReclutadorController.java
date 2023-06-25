@@ -22,7 +22,6 @@ public class ReclutadorController {
     private IReclutadorService rS;
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('RECLUTADOR')")
     public void registrar(@RequestBody ReclutadorDTO dto) {
         ModelMapper m = new ModelMapper();
         Reclutador r = m.map(dto, Reclutador.class);
@@ -31,7 +30,6 @@ public class ReclutadorController {
 
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('ESTUDIANTE') or hasAuthority('RECLUTADOR')")
     public List<ReclutadorDTO> listar() {
         return rS.listar().stream().map(x->{
             ModelMapper m=new ModelMapper();
@@ -47,7 +45,6 @@ public class ReclutadorController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('RECLUTADOR')")
     public ReclutadorDTO ListId(@PathVariable("id")Integer id){
         ModelMapper m = new ModelMapper();
         ReclutadorDTO dto = m.map(rS.ListId(id), ReclutadorDTO.class);
