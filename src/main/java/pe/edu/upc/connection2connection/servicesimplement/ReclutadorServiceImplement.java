@@ -2,11 +2,14 @@ package pe.edu.upc.connection2connection.servicesimplement;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pe.edu.upc.connection2connection.dtos.EmpresaReclutadorDTO;
+import pe.edu.upc.connection2connection.dtos.ReclutadorMatchDTO;
 import pe.edu.upc.connection2connection.entities.Empresa;
 import pe.edu.upc.connection2connection.entities.Reclutador;
 import pe.edu.upc.connection2connection.repositories.IReclutadorRepository;
 import pe.edu.upc.connection2connection.services.IReclutadorService;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 public class ReclutadorServiceImplement implements IReclutadorService {
@@ -37,6 +40,21 @@ public class ReclutadorServiceImplement implements IReclutadorService {
     @Override
     public List<Reclutador> buscarEmpresa(Empresa Empresa_id) {
         return rR.findBynombreEmpresa(Empresa_id);
+    }
+
+    @Override
+    public List<ReclutadorMatchDTO> reporte09() {
+        List<String[]> MatchReclutador = rR.MatchReclutador();
+        List<ReclutadorMatchDTO> ReclutadorMatchDTOs = new ArrayList<>();
+
+        for (String[] data : MatchReclutador) {
+            ReclutadorMatchDTO dto = new ReclutadorMatchDTO();
+            dto.setReclutadorm(data[1]);
+            dto.setCountestudiantesmatch(Integer.parseInt(data[0]));
+            ReclutadorMatchDTOs.add(dto);
+        }
+
+        return ReclutadorMatchDTOs;
     }
 
 }

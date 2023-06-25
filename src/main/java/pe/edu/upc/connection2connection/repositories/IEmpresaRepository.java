@@ -18,4 +18,11 @@ public interface IEmpresaRepository extends JpaRepository<Empresa, Integer> {
             "GROUP BY e.nombre_Empresa", nativeQuery = true)
     List<String[]> obtenerNumeroReclutadoresEmpresa();
 
+    @Query(value = "select count(distinct m.estudiante_id) as EstudiantesMatch, e.nombre_empresa as Empresa\n" +
+            "from match m\n" +
+            "join reclutadores r on r.id=m.reclutador_id\n" +
+            "join empresa e on r.empresa_id=e.id\n" +
+            "group by e.nombre_empresa", nativeQuery = true)
+    List<String[]> MatchEmpresa();
+
 }

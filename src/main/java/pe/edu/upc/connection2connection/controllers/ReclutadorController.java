@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.connection2connection.dtos.EmpresaDTO;
+import pe.edu.upc.connection2connection.dtos.EmpresaReclutadorDTO;
 import pe.edu.upc.connection2connection.dtos.ReclutadorDTO;
+import pe.edu.upc.connection2connection.dtos.ReclutadorMatchDTO;
 import pe.edu.upc.connection2connection.entities.Empresa;
 import pe.edu.upc.connection2connection.entities.Reclutador;
 import pe.edu.upc.connection2connection.services.IReclutadorService;
@@ -66,6 +68,12 @@ public class ReclutadorController {
             ModelMapper m = new ModelMapper();
             return m.map(x, ReclutadorDTO.class);
         }).collect(Collectors.toList());
+    }
+    @GetMapping("/MatchReclutador")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('ESTUDIANTE') or hasAuthority('RECLUTADOR')")
+    public List<ReclutadorMatchDTO> MatchReclutador() {
+        List<ReclutadorMatchDTO> ReclutadorMatchDTO = rS.reporte09();
+        return ReclutadorMatchDTO;
     }
 
 }

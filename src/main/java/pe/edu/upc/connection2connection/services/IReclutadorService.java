@@ -1,5 +1,6 @@
 package pe.edu.upc.connection2connection.services;
 
+import pe.edu.upc.connection2connection.dtos.ReclutadorMatchDTO;
 import pe.edu.upc.connection2connection.entities.Empresa;
 import pe.edu.upc.connection2connection.entities.Reclutador;
 
@@ -16,5 +17,7 @@ public interface IReclutadorService {
     public Reclutador ListId(int id);
 
     List<Reclutador> buscarEmpresa(Empresa Empresa_id);
+
+    public List<ReclutadorMatchDTO> reporte09();
 
 }

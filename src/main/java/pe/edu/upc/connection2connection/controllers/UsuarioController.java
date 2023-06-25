@@ -7,7 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
+import pe.edu.upc.connection2connection.dtos.EmpresaReclutadorDTO;
 import pe.edu.upc.connection2connection.dtos.UsuarioDTO;
+import pe.edu.upc.connection2connection.dtos.UsuarioRolDTO;
 import pe.edu.upc.connection2connection.entities.Usuario;
 import pe.edu.upc.connection2connection.services.IUsuarioService;
 import org.springframework.security.access.annotation.Secured;
@@ -50,7 +52,6 @@ public class UsuarioController {
         return dto;
     }
     @GetMapping("/username/{username}")
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('ESTUDIANTE') or hasAuthority('RECLUTADOR')")
     public UsuarioDTO ListUsername(@PathVariable("username")String name){
         ModelMapper m = new ModelMapper();
         UsuarioDTO dto = m.map(uS.listUsername(name), UsuarioDTO.class);
@@ -61,7 +62,7 @@ public class UsuarioController {
     public void goUpdate(@RequestBody UsuarioDTO dto){
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto, Usuario.class);
-        uS.insert(u);
+        uS.actualizar(u);
     }
 
     @PostMapping
@@ -88,6 +89,12 @@ public class UsuarioController {
             model.addAttribute("error", e.getMessage());
         }
         return "usersecurity/listUser";
+    }
+    @GetMapping("/usuariosporrol")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('ESTUDIANTE') or hasAuthority('RECLUTADOR')")
+    public List<UsuarioRolDTO> usuariosporrol() {
+        List<UsuarioRolDTO> UsuarioRolDTO = uS.reporte08();
+        return UsuarioRolDTO;
     }
 
 }
