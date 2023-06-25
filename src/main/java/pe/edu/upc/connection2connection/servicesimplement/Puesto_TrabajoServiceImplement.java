@@ -23,6 +23,11 @@ public class Puesto_TrabajoServiceImplement implements IPuesto_TrabajoService {
     }
 
     @Override
+    public Puesto_Trabajo ListId(int id) {
+        return pR.findById(id).orElse(new Puesto_Trabajo());
+    }
+
+    @Override
     public void delete(int id) {
         pR.deleteById(id);
     }
