@@ -3,6 +3,7 @@ package pe.edu.upc.connection2connection.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.connection2connection.dtos.CalificacionDTO;
 import pe.edu.upc.connection2connection.entities.Calificacion;
@@ -18,6 +19,7 @@ public class CalificacionController {
     private ICalificacionService aS;
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('ESTUDIANTE')")
     public void insert(@RequestBody CalificacionDTO dto){
         ModelMapper m = new ModelMapper();
         Calificacion e = m.map(dto,Calificacion.class);
@@ -25,6 +27,7 @@ public class CalificacionController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<CalificacionDTO> list(){
         return aS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -32,6 +35,7 @@ public class CalificacionController {
         }).collect(Collectors.toList());
     }
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void delete(@PathVariable("id")Integer id){
         aS.delete(id);
     }
@@ -42,6 +46,7 @@ public class CalificacionController {
         return dto;
     }
     @PutMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void goUpdate(@RequestBody CalificacionDTO dto){
         ModelMapper m = new ModelMapper();
         Calificacion e = m.map(dto, Calificacion.class);

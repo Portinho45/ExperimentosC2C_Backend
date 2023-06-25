@@ -2,6 +2,7 @@ package pe.edu.upc.connection2connection.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.connection2connection.dtos.EmpresaDTO;
 import pe.edu.upc.connection2connection.dtos.RequisitoDTO;
@@ -19,6 +20,7 @@ public class RequisitoController
     private IRequisitoService rS;
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('RECLUTADOR')")
     public void insert(@RequestBody RequisitoDTO dto){
         ModelMapper m = new ModelMapper();
         Requisito r = m.map(dto,Requisito.class);
@@ -26,6 +28,7 @@ public class RequisitoController
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('RECLUTADOR')")
     public List<RequisitoDTO> list(){
         return rS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -33,6 +36,7 @@ public class RequisitoController
         }).collect(Collectors.toList());
     }
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('RECLUTADOR')")
     public void delete(@PathVariable("id")Integer id){
         rS.delete(id);
     }
@@ -43,6 +47,7 @@ public class RequisitoController
         return dto;
     }
     @PutMapping
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('RECLUTADOR')")
     public void goUpdate(@RequestBody EmpresaDTO dto){
         ModelMapper m = new ModelMapper();
         Requisito r = m.map(dto, Requisito.class);

@@ -22,6 +22,7 @@ public class ReclutadorController {
     private IReclutadorService rS;
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('RECLUTADOR')")
     public void registrar(@RequestBody ReclutadorDTO dto) {
         ModelMapper m = new ModelMapper();
         Reclutador r = m.map(dto, Reclutador.class);
@@ -30,6 +31,7 @@ public class ReclutadorController {
 
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('ESTUDIANTE') or hasAuthority('RECLUTADOR')")
     public List<ReclutadorDTO> listar() {
         return rS.listar().stream().map(x->{
             ModelMapper m=new ModelMapper();

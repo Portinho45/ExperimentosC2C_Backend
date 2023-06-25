@@ -32,6 +32,7 @@ public class UsuarioController {
 
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('ESTUDIANTE') or hasAuthority('RECLUTADOR')")
     public List<UsuarioDTO> list(){
         return uS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -49,12 +50,14 @@ public class UsuarioController {
         return dto;
     }
     @GetMapping("/username/{username}")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('ESTUDIANTE') or hasAuthority('RECLUTADOR')")
     public UsuarioDTO ListUsername(@PathVariable("username")String name){
         ModelMapper m = new ModelMapper();
         UsuarioDTO dto = m.map(uS.listUsername(name), UsuarioDTO.class);
         return dto;
     }
     @PutMapping
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('ESTUDIANTE') or hasAuthority('RECLUTADOR')")
     public void goUpdate(@RequestBody UsuarioDTO dto){
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto, Usuario.class);
@@ -62,6 +65,7 @@ public class UsuarioController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('ESTUDIANTE') or hasAuthority('RECLUTADOR')")
     public String saveUser(@Valid Usuario usuario, BindingResult result, Model model, SessionStatus status,@RequestBody UsuarioDTO dto)
             throws Exception {
         if (result.hasErrors()) {
@@ -77,6 +81,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/list")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('ESTUDIANTE') or hasAuthority('RECLUTADOR')")
     public String listUser(Model model) {
         try {
             model.addAttribute("user", new Usuario());
