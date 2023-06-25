@@ -32,6 +32,7 @@ public class RoleController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<RoleDTO> list(){
         return rS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
