@@ -27,7 +27,6 @@ public class InstitucionController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('ESTUDIANTE') or hasAuthority('RECLUTADOR')")
     public List<InstitucionDTO> list(){
         return iS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
