@@ -27,7 +27,6 @@ public class CalificacionController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
     public List<CalificacionDTO> list(){
         return aS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
@@ -35,7 +34,6 @@ public class CalificacionController {
         }).collect(Collectors.toList());
     }
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public void delete(@PathVariable("id")Integer id){
         aS.delete(id);
     }
@@ -46,7 +44,6 @@ public class CalificacionController {
         return dto;
     }
     @PutMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
     public void goUpdate(@RequestBody CalificacionDTO dto){
         ModelMapper m = new ModelMapper();
         Calificacion e = m.map(dto, Calificacion.class);
